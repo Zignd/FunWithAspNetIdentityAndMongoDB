@@ -17,11 +17,11 @@ namespace FunWithAspNetIdentityAndMongoDB.Infrastructure
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("FunWithAspNetIdentityAndMongoDB");
             var users = database.GetCollection<AppUser>("Users");
-            var roles = database.GetCollection<IdentityRole>("Roles");
+            var roles = database.GetCollection<AppRole>("Roles");
             return new AppIdentityDbContext(users, roles);
         }
         
-        private AppIdentityDbContext(IMongoCollection<AppUser> users, IMongoCollection<IdentityRole> roles)
+        private AppIdentityDbContext(IMongoCollection<AppUser> users, IMongoCollection<AppRole> roles)
         {
             Users = users;
             Roles = roles;
@@ -29,7 +29,7 @@ namespace FunWithAspNetIdentityAndMongoDB.Infrastructure
 
         public IMongoCollection<AppUser> Users { get; set; }
 
-        public IMongoCollection<IdentityRole> Roles { get; set; }
+        public IMongoCollection<AppRole> Roles { get; set; }
 
         public void Dispose()
         {

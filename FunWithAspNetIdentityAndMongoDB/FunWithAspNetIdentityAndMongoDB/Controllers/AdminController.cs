@@ -11,6 +11,9 @@ using System.Web.Mvc;
 
 namespace FunWithAspNetIdentityAndMongoDB.Controllers
 {
+    // TODO: Remove this attribute in order to be able to perform the creation of the initial users
+    // The ideal way of doing this is to seed the database when the application runs for the first time
+    [Authorize(Roles = "Administrators")]
     public class AdminController : Controller
     {
         public ActionResult Index()
